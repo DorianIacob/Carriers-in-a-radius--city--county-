@@ -1,7 +1,6 @@
 // "request" array will store the zones (city + county)
 let request = [];
 
-
 document.getElementById("add-to-search-button").onclick = function () {
     const addCity = document.getElementById("add-city");
     const addCounty = document.getElementById("add-county");
@@ -53,7 +52,7 @@ document.getElementById("search-button").onclick = function () {
                 tdPhone.textContent = carriers[i].Address.Phone;
                 trElement.appendChild(tdPhone);
             }
-            console.log(carriers);
+//            console.log(carriers);
         })();
     }
 }
