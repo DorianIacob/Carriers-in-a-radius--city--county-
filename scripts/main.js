@@ -17,7 +17,7 @@ document.getElementById("add-to-search-button").onclick = function () {
 
 document.getElementById("search-button").onclick = function () {
     if (request.length !== 0) {
-        finalRequest = '{ "Addresses": [';
+        let finalRequest = '{ "Addresses": [';
         for (let i = 0; i < request.length; ++i) {
             finalRequest += '"' + request[i] + '", ';
         }
@@ -52,7 +52,7 @@ document.getElementById("search-button").onclick = function () {
                 tdPhone.textContent = carriers[i].Address.Phone;
                 trElement.appendChild(tdPhone);
             }
-//            console.log(carriers);
+            console.log(carriers);
         })();
     }
 }
@@ -61,3 +61,31 @@ document.getElementById("start-new-search-button").onclick = function () {
     request = [];
     location.reload();
 }
+
+/*
+let myInit = { method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors',
+                cache: 'default'};
+
+let myRequest = new Request("../cities.json", myInit);
+*/
+/*
+var citiesUS = [];
+ fetch("../cities.json")
+                .then(response => response.json())
+                    .then(data => citiesUS = data);
+  console.log(citiesUS);
+*/
+/*
+import * as data from '../cities.json';
+const {name} = data;
+console.log(name);
+*/
+
+ import json from '../cities.json';
+
+
+console.log(json);

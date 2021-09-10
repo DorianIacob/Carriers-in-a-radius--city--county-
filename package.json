@@ -1,0 +1,20 @@
+{
+  "name": "TrucksRadius",
+  "version": "1.0.0",
+  "description": "Trucks in a radius",
+  "main": "scripts/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "module",
+    "url": "git+https://github.com/DorianIacob/Carriers-in-a-radius--city--county-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DorianIacob/Carriers-in-a-radius--city--county-/issues"
+  },
+  "homepage": "https://github.com/DorianIacob/Carriers-in-a-radius--city--county-#readme"
+}
