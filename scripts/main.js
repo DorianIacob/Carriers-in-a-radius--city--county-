@@ -11,53 +11,39 @@ document.getElementById("add-to-search-button").onclick = function () {
         if (addRadius.value !== "") {
             radius = addRadius.value;
         }
-        console.log(radius);
+        //console.log(radius);
         (async () => {
             const citiesUs = await fetch("../cities.json").then(data => data.json());
             const searchZone = document.getElementById("search-zone");
+            let warningMessage = "Enter the correct city name, please";
             console.log(citiesUs);
             console.log(addCity.value.toUpperCase());
             console.log(citiesUs[0].city.toUpperCase());
             for (let i = 0; i < citiesUs.length; ++i) {
-                if (i === citiesUs.length - 1 && addCity.value.toUpperCase() !== citiesUs[i].city.toUpperCase()) {
-                    const para = document.createElement("p");
-                    para.textContent = "Enter the correct city name, please";
-                    searchZone.appendChild(para);
-                } else if (addCity.value.toUpperCase() === citiesUs[i].city.toUpperCase()) {
-                    while (searchZone.firstChild.textContent === "Enter the correct city name, please") {
+                if (addCity.value.toUpperCase() === citiesUs[i].city.toUpperCase()) {
+                    while (searchZone.firstChild.textContent == warningMessage) {
                         searchZone.removeChild(searchZone.firstChild);
                     }
-                    // request.push(addCity.value);
                     for (let j = 0; j < citiesUs.length; ++j) {
-                        /* function calculateDistanceByCoordinates (lat1, lon1, lat2, lon2) {
-                            const R = 6371e3; // metres
-                            const φ1 = lat1 * Math.PI/180; // φ, λ in radians
-                            const φ2 = lat2 * Math.PI/180;
-                            const Δφ = (lat2-lat1) * Math.PI/180;
-                            const Δλ = (lon2-lon1) * Math.PI/180;
-                        
-                            const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-                            Math.cos(φ1) * Math.cos(φ2) *
-                            Math.sin(Δλ/2) * Math.sin(Δλ/2);
-                            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-                        
-                            const d = R * c; // in metres
-                            return d/1000;
-                        }*/
                         let citiesDistance = calculateDistanceByCoordinates (citiesUs[i].latitude, citiesUs[i].longitude, citiesUs[j].latitude, citiesUs[j].longitude);
                         if (citiesDistance <= radius) {
                             request.push(citiesUs[j].city);
                         }
                     }
+                    let cityCounty = addCity.value + ", " + addCounty.value;
+                    const para = document.createElement("p");
+                    para.textContent = cityCounty;
+                    document.getElementById("search-zone").appendChild(para);
+                    break;
+                } else if (i === citiesUs.length - 1 && addCity.value.toUpperCase() !== citiesUs[i].city.toUpperCase()) {
+                    const para = document.createElement("p");
+                    para.textContent = warningMessage;
+                    searchZone.appendChild(para);
                 }
             }
             console.log(request);
         })();
-        let cityCounty = addCity.value + ", " + addCounty.value;
-        //request.push(cityCounty);
-        const para = document.createElement("p");
-        para.textContent = cityCounty;
-        document.getElementById("search-zone").appendChild(para);
+
 //        addCity.value = "";
 //        addCounty.value = "";
 //        addRadius.value = "";
